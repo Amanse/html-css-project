@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&display=swap');
+
+body {
+    background-color: #f6f6f0;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    margin: 0;
+    padding: 0;
+}
+
+.background {
+    background: #00796b;
+    background-blend-mode: darken;
+    background-size: cover;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    cursor: pointer;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Pacifico', cursive;
+    font-size: 50px;
+    margin-right: 19px;
+}
+
+.logo a {
+    color: white;
+    text-decoration: none;
+}
+
+.nav-list {
+    padding: 10px;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    overflow: auto;
+}
+
+.nav-list li {
+    list-style: none;
+    padding: 10px 15px;
+}
+
+.nav-list li a {
+    text-decoration: none;
+    color: white;
+}
+
+.nav-list li a:hover {
+    color: grey;
+}
+
+.rightnav {
+    width: 30%;
+    text-align: right;
+}
+
+#search {
+    padding: 5px;
+    font-size: 17px;
+    border: 2px solid grey;
+    border-radius: 9px;
+}
+
+.btn {
+    padding: 8px 20px;
+    margin: 7px 0;
+    border: 2px solid white;
+    border-radius: 8px;
+    background: none;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-sm {
+    padding: 6px 10px;
+    vertical-align: middle;
+}
+
+.mainContent {
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 70px;
+}
+
+.mainContent ul li {
+    display: inline-block;
+}
+
+.mainContent:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.mainContent a {
+    color: black;
+    text-decoration: none;
+}
+
+.mainContent img:hover {
+    cursor: pointer;
+}
+
+.saleItem {
+    background: white;
+    padding: 40px;
+    margin: 40px;
+    border-radius: 6px;
+    text-align: center;
+    float: left;
+}
+
+.saleItem:hover {
+    box-shadow: 0 0 13px 0 gray;
+}
+
+.saleImg {
+    height: 400px;
+    width: 400px;
+    border-radius: 6px;
+}
+
+.saleTitle {
+    font-size: 30px;
+    margin-bottom: 2px;
+}
+
+.saleSTitle {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 3px;
+}
+
+.categoryItem {
+    background: white;
+    padding: 40px;
+    margin: 40px;
+    border-radius: 6px;
+    text-align: center;
+    float: left;
+}
+
+.categoryItem:hover {
+    box-shadow: 0 0 13px 0 gray;
+}
+
+.categoryImg {
+    height: 400px;
+    width: 400px;
+    border-radius: 6px;
+}
+
+.categoryTitle {
+    font-size: 30px;
+    margin-bottom: 2px;
+}
+
+.categorySTitle {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 3px;
+}
+
+.aboutContent {
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-left: 100px;
+    margin-right: 100px;
+    font-size: 20px;
+}
+
+.aboutLogo ul li {
+    display: inline-block;
+}
+
+.aboutLogo:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.aboutCard {
+    float: left;
+    margin: 20px;
+    width: 250px;
+    font-size: 40px;
+    background: white;
+    border-radius: 10px;
+}
+
+.aboutLetter {
+    font-size: 160px;
+    margin: 0px 0px 0px 0px;
+}
+
+.aboutName {
+}
+
+footer {
+    background: #212121;
+    text-align: center;	
+    padding: 40px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.footerTitle {
+    font-size: 35px;
+    color: white;
+    margin-bottom: 2px;
+}
+
+.fSubTitle {
+    font-size: 20px;
+    margin-top:3px;
+    color: white;
+}
