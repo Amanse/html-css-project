@@ -126,8 +126,6 @@ body {
 
 .saleItem {
     background: white;
-    padding: 40px;
-    margin: 40px;
     border-radius: 6px;
     text-align: center;
     float: left;
@@ -163,6 +161,10 @@ body {
 
 @media only screen  and (min-width: 600px) {
     .categoryItem{
+        padding: 40px;
+        margin: 40px;
+    }
+    .saleItem {
         padding: 40px;
         margin: 40px;
     }
