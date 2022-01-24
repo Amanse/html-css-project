@@ -58,7 +58,9 @@ body {
     color: grey;
 }
 
-.rightnav {
+.rightNav {
+    display: flex;
+    flex-direction: column;
     width: 30%;
     text-align: right;
 }
@@ -145,11 +147,16 @@ body {
 
 .categoryItem {
     background: white;
-    padding: 40px;
-    margin: 40px;
     border-radius: 6px;
     text-align: center;
     float: left;
+}
+
+@media only screen  and (min-width: 600px) {
+    .categoryItem{
+        padding: 40px;
+        margin: 40px;
+    }
 }
 
 .categoryItem:hover {
