@@ -20,6 +20,7 @@ body {
     position: sticky;
     top: 0;
     cursor: pointer;
+    padding-left: 1rem;
 }
 
 .logo {
@@ -70,16 +71,24 @@ body {
     font-size: 17px;
     border: 2px solid grey;
     border-radius: 9px;
+    width: 70%;
 }
 
 .btn {
     padding: 8px 20px;
     margin: 7px 0;
     border: 2px solid white;
+    width: 90%;
     border-radius: 8px;
     background: none;
     color: white;
     cursor: pointer;
+}
+
+@media screen and (min-width: 600px) {
+    .btn{
+       width: 20%; 
+    }
 }
 
 .btn-sm {
