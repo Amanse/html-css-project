@@ -188,18 +188,13 @@ body {
     font-size: 20px;
 }
 
-.aboutLogo ul li {
-    display: inline-block;
-}
-
-.aboutLogo:after {
-    content: "";
-    display: table;
-    clear: both;
+.aboutLogo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .aboutCard {
-    float: left;
     margin: 20px;
     width: 250px;
     font-size: 40px;
