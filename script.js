@@ -30,7 +30,10 @@ function newCategoryItem(category) {
 }
 
 function onSaleCartClick(event) {
-    // TODO
+    let cart = JSON.parse(sessionStorage.cart);
+    let item = event.currentTarget.dataset
+    cart.push({item: item.id, category: item.category});
+    sessionStorage.cart = JSON.stringify(cart);
 }
 
 function newSaleItem(item, category) {
@@ -51,6 +54,19 @@ function newSaleItem(item, category) {
     // TODO listen to button instead of whole card
     div.addEventListener("click", onSaleCartClick);
     return div;
+}
+
+// find and return item and its category from their ids
+function findItem(item, category, database) {
+    for (let i = 0; i < database.length; i++) {
+        if (database[i].id == category) {
+            for (let j = 0; j < database[i].items.length; j++) {
+                if (database[i].items[j].id == item) {
+                    return [ database[i].items[j], database[i] ];
+                }
+            }
+        }
+    }
 }
 
 async function display(page) {
@@ -83,6 +99,15 @@ async function display(page) {
         return;
     }
 
+    if (page == "cart") {
+        let cart = JSON.parse(sessionStorage.cart);
+        for (let i = 0; i < cart.length; i++) {
+            let item = findItem(cart[i].item, cart[i].category, database);
+            cont.append(newSaleItem(item[0], item[1]));
+        }
+        return;
+    }
+
     // TODO make search work??
 
     // TODO render 404 fancily
@@ -97,10 +122,14 @@ async function main() {
     if (!sessionStorage.page) {
         sessionStorage.page = "index";
     }
+    if (!sessionStorage.cart) {
+        sessionStorage.cart = JSON.stringify([]);
+    }
 
     // set event listeners on navigation buttons
     document.getElementById("logo").addEventListener("click", function() { navigateTo("index"); });
     document.getElementById("navbar-about").addEventListener("click", function() { navigateTo("about"); });
+    document.getElementById("navbar-cart").addEventListener("click", function() { navigateTo("cart"); });
 
     // append dom elements
     display(sessionStorage.page);
