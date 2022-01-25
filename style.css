@@ -138,6 +138,14 @@ body {
     margin-top: 3px;
 }
 
+.saleItem > button {
+    font-family: inherit;
+    font-size: 20px;
+    padding: 10px;
+    border: 0px solid;
+    border-radius: 5px;
+}
+
 .categoryItem {
     background: white;
     border-radius: 6px;

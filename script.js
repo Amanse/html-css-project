@@ -29,10 +29,9 @@ function newCategoryItem(category) {
     return div;
 }
 
-function onSaleCartClick(event) {
+function onSaleCartClick(item, category) {
     let cart = JSON.parse(sessionStorage.cart);
-    let item = event.currentTarget.dataset
-    cart.push({item: item.id, category: item.category});
+    cart.push({item: item, category: category});
     sessionStorage.cart = JSON.stringify(cart);
 }
 
@@ -45,14 +44,15 @@ function newSaleItem(item, category) {
     p1.innerText = item.name;
     let p2 = document.createElement("p");
     p2.innerText = item.price;
+    let button = document.createElement("button");
+    button.innerText = "Add to cart";
+    // add to cart
+    button.addEventListener("click", function() { onSaleCartClick(item.id, category.id); });
     let div = document.createElement("div");
     div.className = "saleItem";
     div.dataset.item = item.id;
     div.dataset.category = category.id;
-    div.append(img, p1, p2);
-    // add to cart
-    // TODO listen to button instead of whole card
-    div.addEventListener("click", onSaleCartClick);
+    div.append(img, p1, p2, button);
     return div;
 }
 
