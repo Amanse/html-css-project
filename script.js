@@ -110,8 +110,15 @@ async function display(page) {
 
     // TODO make search work??
 
-    // TODO render 404 fancily
-    cont.append("404!!!");
+    // 404
+    let p1 = document.createElement("p");
+    p1.innerText = "Page not found!";
+    let p2 = document.createElement("p");
+    p2.innerText = "Did you get lost, weary traveller?";
+    let div = document.createElement("div");
+    div.className = "errorText";
+    div.append(p1, p2);
+    cont.append(div);
 }
 
 async function main() {
