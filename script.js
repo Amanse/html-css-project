@@ -77,6 +77,30 @@ function findItem(item, category, database) {
     return [i, c]
 }
 
+function onSignupSubmit(event) {
+    event.preventDefault();
+    let fname = document.getElementById("form-fname").value;
+    let lname = document.getElementById("form-lname").value;
+    let email = document.getElementById("form-email").value;
+    sessionStorage.account = JSON.stringify({fname: fname, lname: lname, email: email});
+    navigateTo("index");
+}
+
+function displayAccount() {
+
+    let widget = document.getElementById("account-widget");
+
+    if (!sessionStorage.account) {
+        widget.innerText = "Sign Up";
+        widget.addEventListener("click", function () { navigateTo("signup"); });
+        return;
+    }
+
+    let account = JSON.parse(sessionStorage.account);
+    widget.innerText = "%s %s\n%s".format(account.fname, account.lname, account.email);
+
+}
+
 async function display(page) {
 
     let cont = document.getElementById("main-content");
@@ -92,6 +116,10 @@ async function display(page) {
         let signup = await fetch('signup.html').then(response => response.text());
         let signupDOM = new DOMParser().parseFromString(signup, "text/html");
         cont.innerHTML = signupDOM.getElementsByTagName("body")[0].innerHTML;
+        document.getElementById("form-fname").required = true;
+        document.getElementById("form-lname").required = true;
+        document.getElementById("form-email").required = true;
+        document.getElementById("signup-form").addEventListener("submit", onSignupSubmit);
         return;
     }
 
@@ -152,9 +180,9 @@ async function main() {
     document.getElementById("logo").addEventListener("click", function () { navigateTo("index"); });
     document.getElementById("navbar-about").addEventListener("click", function () { navigateTo("about"); });
     document.getElementById("navbar-cart").addEventListener("click", function () { navigateTo("cart"); });
-    document.getElementById("navbar-signup").addEventListener("click", function () { navigateTo("signup"); });
 
     // append dom elements
+    displayAccount();
     display(sessionStorage.page);
 
 }
