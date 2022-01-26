@@ -1,0 +1,122 @@
+[
+  {
+    "id": "pens",
+    "name": "Pens",
+    "items": [
+      {
+        "id": "pens1",
+        "name": "Pattern Pen",
+        "price": "$10",
+        "image": "pens1.jpg"
+      },
+      {
+        "id": "pens2",
+        "name": "Black Pen",
+        "price": "$5",
+        "image": "pens2.jpg"
+      },
+      {
+        "id": "pens3",
+        "name": "Matte Pen",
+        "price": "$8",
+        "image": "pens3.jpg"
+      },
+      {
+        "id": "pens4",
+        "name": "Velvet Pen",
+        "price": "$8",
+        "image": "pens4.jpg"
+      }
+    ]
+  },
+  {
+    "id": "diaries",
+    "name": "Diaries",
+    "items": [
+      {
+        "id": "diaries1",
+        "name": "Cat Diary",
+        "price": "$4",
+        "image": "diaries1.jpg"
+      },
+      {
+        "id": "diaries2",
+        "name": "Leather Diary",
+        "price": "$6",
+        "image": "diaries2.jpg"
+      },
+      {
+        "id": "diaries3",
+        "name": "Hardback Diary",
+        "price": "$6",
+        "image": "diaries3.jpg"
+      },
+      {
+        "id": "diaries4",
+        "name": "Bound Diary",
+        "price": "$4",
+        "image": "diaries4.jpg"
+      }
+    ]
+  },
+  {
+    "id": "decor",
+    "name": "Decor",
+    "items": [
+      {
+        "id": "decor1",
+        "name": "Clay Candle Holders (10)",
+        "price": "$10",
+        "image": "decor1.jpg"
+      },
+      {
+        "id": "decor2",
+        "name": "Pentagonal Drop Showpiece",
+        "price": "$20",
+        "image": "decor2.jpg"
+      },
+      {
+        "id": "decor3",
+        "name": "Arch Flower Pot (3)",
+        "price": "$3",
+        "image": "decor3.jpg"
+      },
+      {
+        "id": "decor4",
+        "name": "Wooden Candle Holders (2)",
+        "price": "$6",
+        "image": "decor4.jpg"
+      }
+    ]
+  },
+  {
+    "id": "brushes",
+    "name": "Art Brushes",
+    "items": [
+      {
+        "id": "brushes1",
+        "name": "Squirrel Brushes (7)",
+        "price": "$12",
+        "image": "brushes1.jpg"
+      },
+      {
+        "id": "brushes2",
+        "name": "Squirrel Brushes (9)",
+        "price": "$8",
+        "image": "brushes2.jpg"
+      },
+      {
+        "id": "brushes3",
+        "name": "Detail Brush",
+        "price": "$8",
+        "image": "brushes3.jpg"
+      },
+      {
+        "id": "brushes4",
+        "name": "Acrylic Brush (5)",
+        "price": "$2",
+        "image": "brushes4.jpg"
+      }
+    ]
+  }
+]

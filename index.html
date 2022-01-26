@@ -11,17 +11,18 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" type="image/x-icon" href="./images/favicon.png">
 
+    <script defer src="./script.js"></script>
+
 </head>
 
 <body>
 
     <nav class="navbar background">
 
-        <div class="logo">
-            <a href="index.html"><span class="logoTitle">FISA</span></a>
+        <div class="logo" id="logo">
+            <span class="logoTitle">FISA</span>
         </div>
         <ul class="nav-list">
-            <li><a href="about.html">About Us</a></li>
         </ul>
 
         <div class="rightNav">
@@ -31,32 +32,7 @@
 
     </nav>
 
-    <div class="mainContent">
-        <a href="pens.html">
-            <section class="categoryItem">
-                <img src="./images/pens/pens0.jpg" class="categoryImg" alt="pens" />
-                <p class="categoryTitle" class="categoryImg">Pens</p>
-            </section>
-        </a>
-        <a href="diaries.html">
-            <section class="categoryItem">
-                <img src="./images/diaries/diaries0.jpg" class="categoryImg" alt="diaries" />
-                <p class="categoryTitle">Diaries</p>
-            </section>
-        </a>
-        <a href="decor.html">
-            <section class="categoryItem">
-                <img src="./images/decor/decor0.jpg" class="categoryImg" alt="decor" />
-                <p class="categoryTitle">Decor</p>
-            </section>
-        </a>
-        <a href="brushes.html">
-            <section class="categoryItem">
-                <img src="./images/brushes/brushes0.jpg" class="categoryImg" alt="brushes" />
-                <p class="categoryTitle">Art Brushes</p>
-            </section>
-        </a>
-    </div>
+    <div class="mainContent" id="main-content"></div>
 
     <footer class="footer">
         <span class="footerTitle">FISA Pvt. Ltd</span>

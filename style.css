@@ -30,9 +30,6 @@ body {
     font-family: 'Pacifico', cursive;
     font-size: 50px;
     margin-right: 19px;
-}
-
-.logo a {
     color: white;
     text-decoration: none;
 }
@@ -50,12 +47,12 @@ body {
     padding: 10px 15px;
 }
 
-.nav-list li a {
+.nav-list li div {
     text-decoration: none;
     color: white;
 }
 
-.nav-list li a:hover {
+.nav-list li div:hover {
     color: grey;
 }
 
