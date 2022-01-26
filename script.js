@@ -58,15 +58,9 @@ function newSaleItem(item, category) {
 
 // find and return item and its category from their ids
 function findItem(item, category, database) {
-    for (let i = 0; i < database.length; i++) {
-        if (database[i].id == category) {
-            for (let j = 0; j < database[i].items.length; j++) {
-                if (database[i].items[j].id == item) {
-                    return [ database[i].items[j], database[i] ];
-                }
-            }
-        }
-    }
+    let c = database.filter(c => c.id == category)[0]
+    let i = c.items.filter(i => i.id == item)[0]
+    return [ i, c ]
 }
 
 async function display(page) {
