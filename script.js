@@ -6,6 +6,12 @@ function strfmt() {
 };
 String.prototype.format = strfmt;
 
+function logoutUser() {
+    sessionStorage.removeItem("account");
+    sessionStorage.cart = [];
+    navigateTo("index");
+}
+
 function navigateTo(page) {
     sessionStorage.page = page;
     document.location.reload();
@@ -82,13 +88,14 @@ function onSignupSubmit(event) {
     let fname = document.getElementById("form-fname").value;
     let lname = document.getElementById("form-lname").value;
     let email = document.getElementById("form-email").value;
-    sessionStorage.account = JSON.stringify({fname: fname, lname: lname, email: email});
+    sessionStorage.account = JSON.stringify({ fname: fname, lname: lname, email: email });
     navigateTo("index");
 }
 
 function displayAccount() {
 
     let widget = document.getElementById("account-widget");
+    let navbarList = document.getElementById("nav-list");
 
     if (!sessionStorage.account) {
         widget.innerText = "Sign Up";
@@ -96,8 +103,16 @@ function displayAccount() {
         return;
     }
 
+    console.log(navbarList);
+    let liItem = document.createElement("li");
+    liItem.innerHTML = "<div>Logout</div>"
+    liItem.setAttribute("onclick", "logoutUser()");
+    navbarList.append(liItem);
+
+
     let account = JSON.parse(sessionStorage.account);
-    widget.innerText = "%s %s\n%s".format(account.fname, account.lname, account.email);
+    //widget.innerText = "%s %s\n%s".format(account.fname, account.lname, account.email);
+    widget.innerHTML = `<abbr title="${account.email}">Welcome ${account.fname} ${account.lname}!</abbr>`
 
 }
 
@@ -186,4 +201,5 @@ async function main() {
     display(sessionStorage.page);
 
 }
+
 main();

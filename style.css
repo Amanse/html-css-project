@@ -19,7 +19,6 @@ body {
     justify-content: center;
     position: sticky;
     top: 0;
-    cursor: pointer;
     padding-left: 1rem;
 }
 
@@ -32,6 +31,7 @@ body {
     margin-right: 19px;
     color: white;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .nav-list {
@@ -45,6 +45,8 @@ body {
 .nav-list li {
     list-style: none;
     padding: 10px 15px;
+    color: white;
+    cursor: pointer;
 }
 
 .nav-list li div {
@@ -72,10 +74,11 @@ body {
 }
 
 .btn {
-    padding: 8px 20px;
+    box-sizing: content-box;
+    padding: 8px;
     margin: 7px 0;
     border: 2px solid white;
-    width: 90%;
+    width: 100%;
     border-radius: 8px;
     background: none;
     color: white;
@@ -95,13 +98,14 @@ body {
 
 .accountWidget {
     width: 20%;
-    padding: 20px;
-    margin: 20px;
+    padding: 1.2rem;
+    margin: 1.2rem;
     background-color: rgb(0, 150, 130);
     border-radius: 6px;
     text-align: center;
     color: white;
-    font-size: 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
 }
 
 .mainContent {
@@ -300,4 +304,8 @@ footer {
     font-size: 20px;
     margin-top:3px;
     color: white;
+}
+
+abbr {
+    text-decoration: none;
 }
