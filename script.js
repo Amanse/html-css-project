@@ -57,7 +57,12 @@ async function display(page) {
 
     let cont = document.getElementById("main-content");
 
-    // TODO add about page
+    if (page == "about") {
+        let about = await fetch('about.html').then(response => response.text());
+        let aboutDOM = new DOMParser().parseFromString(about, "text/html");
+        cont.innerHTML = aboutDOM.getElementsByTagName("body")[0].innerHTML;
+        return;
+    }
 
     // all pages below this will need the database
     let database = await fetch('data.json').then(response => response.json());
@@ -95,6 +100,7 @@ async function main() {
 
     // set event listeners on navigation buttons
     document.getElementById("logo").addEventListener("click", function() { navigateTo("index"); });
+    document.getElementById("navbar-about").addEventListener("click", function() { navigateTo("about"); });
 
     // append dom elements
     display(sessionStorage.page);
