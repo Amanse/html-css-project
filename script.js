@@ -18,6 +18,27 @@ function navigateTo(page) {
     document.documentElement.scrollTop = 0;
 }
 
+function addToCart(item, category) {
+    let cart = JSON.parse(sessionStorage.cart);
+    cart.push({ item: item, category: category });
+    sessionStorage.cart = JSON.stringify(cart);
+}
+
+function removeFromCart(item, category) {
+    let cart = JSON.parse(sessionStorage.cart);
+    let i = cart.findIndex(e => (e.item == item && e.category == category));
+    if (i > -1) {
+        cart.splice(i, 1);
+        sessionStorage.cart = JSON.stringify(cart);
+    }
+}
+
+function countInCart(item, category) {
+    let cart = JSON.parse(sessionStorage.cart);
+    let n = cart.filter(e => (e.item == item && e.category == category)).length;
+    return n;
+}
+
 function newCategoryItem(category) {
     if (!category) return;
     let img = document.createElement("img");
@@ -35,20 +56,12 @@ function newCategoryItem(category) {
     return div;
 }
 
-function onSaleCartClick(item, category) {
-    let cart = JSON.parse(sessionStorage.cart);
-    cart.push({ item: item, category: category });
-    sessionStorage.cart = JSON.stringify(cart);
+function onSaleCartClick(item, category, counter) {
+    addToCart(item, category);
+    counter.innerText = countInCart(item, category);
 }
 
-function removeFromCart(itemToRemove) {
-    let cart = JSON.parse(sessionStorage.cart);
-    cart = cart.filter((item) => item.item != itemToRemove);
-    sessionStorage.cart = JSON.stringify(cart);
-    navigateTo("cart");
-}
-
-function newSaleItem(item, category, isCart = false) {
+function newSaleItem(item, category) {
     if (!item || !category) return;
     let img = document.createElement("img");
     img.src = "./images/%s/%s".format(category.id, item.image);
@@ -57,22 +70,21 @@ function newSaleItem(item, category, isCart = false) {
     p1.innerText = item.name;
     let p2 = document.createElement("p");
     p2.innerText = item.price;
-    let button = document.createElement("span");
-    if (!isCart) {
-        button = document.createElement("button");
-        button.innerText = "Add to cart";
-        // add to cart
-        button.addEventListener("click", function () { onSaleCartClick(item.id, category.id); this.innerHTML = "Added to cart"; });
-    } else {
-        button = document.createElement("button");
-        button.innerText = "Remove from cart";
-        button.addEventListener("click", () => { removeFromCart(item.id) });
-    }
+    let cartLabel = document.createElement("span");
+    cartLabel.innerText = "In cart: ";
+    let cartCount = document.createElement("span");
+    cartCount.innerText = countInCart(item.id, category.id);
+    let button = document.createElement("button");
+    button.innerText = "Add to cart";
+    // add to cart
+    button.addEventListener("click", function() { onSaleCartClick(item.id, category.id, cartCount); });
+    let cartStuff = document.createElement("div");
+    cartStuff.append(cartLabel, cartCount, button);
     let div = document.createElement("div");
     div.className = "saleItem";
     div.dataset.item = item.id;
     div.dataset.category = category.id;
-    div.append(img, p1, p2, button);
+    div.append(img, p1, p2, cartStuff);
     return div;
 }
 
@@ -161,7 +173,7 @@ async function display(page) {
         let cart = JSON.parse(sessionStorage.cart);
         for (let i = 0; i < cart.length; i++) {
             let item = findItem(cart[i].item, cart[i].category, database);
-            cont.append(newSaleItem(item[0], item[1], true));
+            cont.append(newSaleItem(item[0], item[1]));
         }
         return;
     }

@@ -153,7 +153,24 @@ body {
     margin-top: 3px;
 }
 
-.saleItem > button {
+.saleItem > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0px 0px 0px;
+}
+
+.saleItem > div > span:nth-of-type(1) {
+    font-size: 25px;
+}
+
+.saleItem > div > span:nth-of-type(2) {
+    font-size: 50px;
+    margin: 0px 40px 0px 10px;
+}
+
+.saleItem > div > button {
     font-family: inherit;
     font-size: 20px;
     padding: 10px;
