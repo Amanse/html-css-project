@@ -2,7 +2,7 @@
 "use strict";
 
 function strfmt() {
-    return [...arguments].reduce((p,c) => p.replace(/%s/,c), this);
+    return [...arguments].reduce((p, c) => p.replace(/%s/, c), this);
 };
 String.prototype.format = strfmt;
 
@@ -25,17 +25,24 @@ function newCategoryItem(category) {
     div.dataset.category = category.id;
     div.append(img, p);
     // goto category page
-    div.addEventListener("click", function() { navigateTo("category-%s".format(category.id)); });
+    div.addEventListener("click", function () { navigateTo("category-%s".format(category.id)); });
     return div;
 }
 
 function onSaleCartClick(item, category) {
     let cart = JSON.parse(sessionStorage.cart);
-    cart.push({item: item, category: category});
+    cart.push({ item: item, category: category });
     sessionStorage.cart = JSON.stringify(cart);
 }
 
-function newSaleItem(item, category) {
+function removeFromCart(itemToRemove) {
+    let cart = JSON.parse(sessionStorage.cart);
+    cart = cart.filter((item) => item.item != itemToRemove);
+    sessionStorage.cart = JSON.stringify(cart);
+    navigateTo("cart");
+}
+
+function newSaleItem(item, category, isCart = false) {
     if (!item || !category) return;
     let img = document.createElement("img");
     img.src = "./images/%s/%s".format(category.id, item.image);
@@ -44,10 +51,17 @@ function newSaleItem(item, category) {
     p1.innerText = item.name;
     let p2 = document.createElement("p");
     p2.innerText = item.price;
-    let button = document.createElement("button");
-    button.innerText = "Add to cart";
-    // add to cart
-    button.addEventListener("click", function() { onSaleCartClick(item.id, category.id); });
+    let button = document.createElement("span");
+    if (!isCart) {
+        button = document.createElement("button");
+        button.innerText = "Add to cart";
+        // add to cart
+        button.addEventListener("click", function () { onSaleCartClick(item.id, category.id); });
+    } else {
+        button = document.createElement("button");
+        button.innerText = "Remove from cart";
+        button.addEventListener("click", () => { removeFromCart(item.id) });
+    }
     let div = document.createElement("div");
     div.className = "saleItem";
     div.dataset.item = item.id;
@@ -60,7 +74,7 @@ function newSaleItem(item, category) {
 function findItem(item, category, database) {
     let c = database.filter(c => c.id == category)[0]
     let i = c.items.filter(i => i.id == item)[0]
-    return [ i, c ]
+    return [i, c]
 }
 
 async function display(page) {
@@ -104,7 +118,7 @@ async function display(page) {
         let cart = JSON.parse(sessionStorage.cart);
         for (let i = 0; i < cart.length; i++) {
             let item = findItem(cart[i].item, cart[i].category, database);
-            cont.append(newSaleItem(item[0], item[1]));
+            cont.append(newSaleItem(item[0], item[1], true));
         }
         return;
     }
@@ -135,10 +149,10 @@ async function main() {
     }
 
     // set event listeners on navigation buttons
-    document.getElementById("logo").addEventListener("click", function() { navigateTo("index"); });
-    document.getElementById("navbar-about").addEventListener("click", function() { navigateTo("about"); });
-    document.getElementById("navbar-cart").addEventListener("click", function() { navigateTo("cart"); });
-    document.getElementById("navbar-signup").addEventListener("click", function() { navigateTo("signup"); });
+    document.getElementById("logo").addEventListener("click", function () { navigateTo("index"); });
+    document.getElementById("navbar-about").addEventListener("click", function () { navigateTo("about"); });
+    document.getElementById("navbar-cart").addEventListener("click", function () { navigateTo("cart"); });
+    document.getElementById("navbar-signup").addEventListener("click", function () { navigateTo("signup"); });
 
     // append dom elements
     display(sessionStorage.page);
