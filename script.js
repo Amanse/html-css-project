@@ -56,7 +56,7 @@ function newSaleItem(item, category, isCart = false) {
         button = document.createElement("button");
         button.innerText = "Add to cart";
         // add to cart
-        button.addEventListener("click", function () { onSaleCartClick(item.id, category.id); });
+        button.addEventListener("click", function () { onSaleCartClick(item.id, category.id); this.innerHTML = "Added to cart"; });
     } else {
         button = document.createElement("button");
         button.innerText = "Remove from cart";
