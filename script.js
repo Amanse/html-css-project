@@ -74,6 +74,13 @@ async function display(page) {
         return;
     }
 
+    if (page == "signup") {
+        let signup = await fetch('signup.html').then(response => response.text());
+        let signupDOM = new DOMParser().parseFromString(signup, "text/html");
+        cont.innerHTML = signupDOM.getElementsByTagName("body")[0].innerHTML;
+        return;
+    }
+
     // all pages below this will need the database
     let database = await fetch('data.json').then(response => response.json());
 
@@ -131,6 +138,7 @@ async function main() {
     document.getElementById("logo").addEventListener("click", function() { navigateTo("index"); });
     document.getElementById("navbar-about").addEventListener("click", function() { navigateTo("about"); });
     document.getElementById("navbar-cart").addEventListener("click", function() { navigateTo("cart"); });
+    document.getElementById("navbar-signup").addEventListener("click", function() { navigateTo("signup"); });
 
     // append dom elements
     display(sessionStorage.page);
