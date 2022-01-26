@@ -170,7 +170,7 @@ body {
     margin: 0px 40px 0px 10px;
 }
 
-.saleItem > div > button {
+.saleItem  button {
     font-family: inherit;
     font-size: 20px;
     padding: 10px;

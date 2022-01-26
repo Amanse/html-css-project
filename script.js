@@ -18,9 +18,16 @@ function navigateTo(page) {
     document.documentElement.scrollTop = 0;
 }
 
-function addToCart(item, category) {
+function addToCart(itemToA, category) {
     let cart = JSON.parse(sessionStorage.cart);
-    cart.push({ item: item, category: category });
+    let item = cart.find(element => element.item == itemToA);
+    if (item != null) {
+        let idx = cart.findIndex(ele => ele == item);
+        console.log(idx);
+        cart[idx].count += 1;
+    } else {
+        cart.push({ item: itemToA, category: category, count: 1 });
+    }
     sessionStorage.cart = JSON.stringify(cart);
 }
 
@@ -35,8 +42,12 @@ function removeFromCart(item, category) {
 
 function countInCart(item, category) {
     let cart = JSON.parse(sessionStorage.cart);
-    let n = cart.filter(e => (e.item == item && e.category == category)).length;
-    return n;
+    let cartI = cart.find(element => element.item == item);
+    if (cartI != null) {
+        return cartI.count;
+    } else {
+        return 0;
+    }
 }
 
 function newCategoryItem(category) {
@@ -77,7 +88,7 @@ function newSaleItem(item, category) {
     let button = document.createElement("button");
     button.innerText = "Add to cart";
     // add to cart
-    button.addEventListener("click", function() { onSaleCartClick(item.id, category.id, cartCount); });
+    button.addEventListener("click", function () { onSaleCartClick(item.id, category.id, cartCount); });
     let cartStuff = document.createElement("div");
     cartStuff.append(cartLabel, cartCount, button);
     let div = document.createElement("div");
