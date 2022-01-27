@@ -7,8 +7,7 @@ function strfmt() {
 String.prototype.format = strfmt;
 
 function logoutUser() {
-    sessionStorage.removeItem("account");
-    sessionStorage.cart = [];
+    sessionStorage.clear();
     navigateTo("index");
 }
 
@@ -18,15 +17,13 @@ function navigateTo(page) {
     document.documentElement.scrollTop = 0;
 }
 
-function addToCart(itemToA, category) {
+function addToCart(item, category) {
     let cart = JSON.parse(sessionStorage.cart);
-    let item = cart.find(element => element.item == itemToA);
-    if (item != null) {
-        let idx = cart.findIndex(ele => ele == item);
-        console.log(idx);
-        cart[idx].count += 1;
+    let i = cart.findIndex(e => (e.item == item && e.category == category));
+    if (i > -1) {
+        cart[i].count += 1;
     } else {
-        cart.push({ item: itemToA, category: category, count: 1 });
+        cart.push({ item: item, category: category, count: 1 });
     }
     sessionStorage.cart = JSON.stringify(cart);
 }
@@ -35,16 +32,20 @@ function removeFromCart(item, category) {
     let cart = JSON.parse(sessionStorage.cart);
     let i = cart.findIndex(e => (e.item == item && e.category == category));
     if (i > -1) {
-        cart.splice(i, 1);
+        if (cart[i].count > 1) {
+            cart[i].count -= 1;
+        } else {
+            cart.splice(i, 1);
+        }
         sessionStorage.cart = JSON.stringify(cart);
     }
 }
 
 function countInCart(item, category) {
     let cart = JSON.parse(sessionStorage.cart);
-    let cartI = cart.find(element => element.item == item);
-    if (cartI != null) {
-        return cartI.count;
+    let i = cart.findIndex(e => (e.item == item && e.category == category));
+    if (i > -1) {
+        return cart[i].count;
     } else {
         return 0;
     }
@@ -126,16 +127,19 @@ function displayAccount() {
         return;
     }
 
-    console.log(navbarList);
-    let liItem = document.createElement("li");
-    liItem.innerHTML = "<div>Logout</div>"
-    liItem.setAttribute("onclick", "logoutUser()");
-    navbarList.append(liItem);
-
-
     let account = JSON.parse(sessionStorage.account);
-    //widget.innerText = "%s %s\n%s".format(account.fname, account.lname, account.email);
-    widget.innerHTML = `<abbr title="${account.email}">Welcome ${account.fname} ${account.lname}!</abbr>`
+
+    let abbr = document.createElement("abbr");
+    abbr.title = account.email;
+    abbr.innerText = "Welcome %s %s!".format(account.fname, account.lname);
+    widget.append(abbr);
+
+    let div = document.createElement("div");
+    div.innerText = "Logout";
+    let li = document.createElement("li");
+    li.append(div);
+    li.addEventListener("click", logoutUser);
+    navbarList.append(li);
 
 }
 
