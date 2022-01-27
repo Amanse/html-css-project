@@ -101,7 +101,7 @@ body {
     display: flex;
     flex-direction: column;
     position: sticky;
-    top:20px;
+    top:6.8em;
     background-color: #00796b;
 }
 
