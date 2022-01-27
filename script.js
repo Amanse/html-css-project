@@ -252,11 +252,16 @@ async function display(page) {
             div.className = "errorText";
             div.append(p1, p2);
             cont.append(div);
+            return;
         }
         for (let i = 0; i < cart.length; i++) {
             let item = findItem(cart[i].item, cart[i].category, database);
             cont.append(newCartItem(item[0], item[1]));
         }
+        let buyBtn = document.createElement("button");
+        buyBtn.className = "buyBtn";
+        buyBtn.innerText = "Buy now!"
+        cont.append(buyBtn);
         return;
     }
 

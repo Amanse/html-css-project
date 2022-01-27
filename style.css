@@ -320,6 +320,21 @@ body {
     }
 }
 
+.buyBtn {
+    float: right;
+    background-color: #00796b;
+    color: white;
+    font-family: monospace;
+    font-size: 1.2rem;
+    border: none;
+    padding: 0.8rem;
+    transition: all 0.5s;
+}
+
+.buyBtn:hover {
+    box-shadow: 0 0 20px 0 gray;
+}
+
 .aboutContent {
     text-align: center;
     margin-top: 100px;
