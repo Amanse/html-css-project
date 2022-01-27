@@ -32,6 +32,12 @@
         "name": "Velvet Pen",
         "price": "$8",
         "image": "pens4.jpg"
+      },
+      {
+        "id": "pens5",
+        "name": "Rugged Pen",
+        "price": "$10",
+        "image": "pens5.jpg"
       }
     ]
   },
@@ -68,6 +74,12 @@
         "name": "Bound Diary",
         "price": "$4",
         "image": "diaries4.jpg"
+      },
+      {
+        "id": "diaries5",
+        "name": "Paperlla Diary",
+        "price": "$12",
+        "image": "diaries5.jpg"
       }
     ]
   },
@@ -104,6 +116,12 @@
         "name": "Wooden Candle Holders (2)",
         "price": "$6",
         "image": "decor4.jpg"
+      },
+      {
+        "id": "decor5",
+        "name": "Kinetic Desk Toy",
+        "price": "$15",
+        "image": "decor5.jpg"
       }
     ]
   },
@@ -140,6 +158,12 @@
         "name": "Acrylic Brush (5)",
         "price": "$2",
         "image": "brushes4.jpg"
+      },
+      {
+        "id": "brushes5",
+        "name": "Oil Brush (5)",
+        "price": "$2",
+        "image": "brushes5.jpg"
       }
     ]
   }
