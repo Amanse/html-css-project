@@ -4,6 +4,12 @@
     "name": "Pens",
     "items": [
       {
+        "id": "pens0",
+        "name": "Fountain Pens (7)",
+        "price": "$30",
+        "image": "pens0.jpg"
+      },
+      {
         "id": "pens1",
         "name": "Pattern Pen",
         "price": "$10",
@@ -33,6 +39,12 @@
     "id": "diaries",
     "name": "Diaries",
     "items": [
+      {
+        "id": "diaries0",
+        "name": "Multi-sized Diary Set (5)",
+        "price": "$10",
+        "image": "diaries0.jpg"
+      },
       {
         "id": "diaries1",
         "name": "Cat Diary",
@@ -64,6 +76,12 @@
     "name": "Decor",
     "items": [
       {
+        "id": "decor0",
+        "name": "Peacock Teardrop",
+        "price": "$15",
+        "image": "decor0.jpg"
+      },
+      {
         "id": "decor1",
         "name": "Clay Candle Holders (10)",
         "price": "$10",
@@ -93,6 +111,12 @@
     "id": "brushes",
     "name": "Art Brushes",
     "items": [
+      {
+        "id": "brushes0",
+        "name": "Watercolor Markers (set)",
+        "price": "$12",
+        "image": "brushes0.jpg"
+      },
       {
         "id": "brushes1",
         "name": "Squirrel Brushes (7)",
