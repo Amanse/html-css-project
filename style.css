@@ -329,6 +329,7 @@ body {
     border: none;
     padding: 0.8rem;
     transition: all 0.5s;
+    margin-top: 0.8rem;
 }
 
 .buyBtn:hover {
