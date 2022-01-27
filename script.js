@@ -164,6 +164,7 @@ function displayAccount() {
 
     let widget = document.getElementById("account-widget");
     let navbarList = document.getElementById("nav-list");
+    let mobileNavBarList = document.getElementById("nav-list-mobile");
 
     if (!sessionStorage.account) {
         widget.innerText = "Sign Up";
@@ -184,6 +185,7 @@ function displayAccount() {
     li.append(div);
     li.addEventListener("click", logoutUser);
     navbarList.append(li);
+    mobileNavBarList.append(li);
 
 }
 

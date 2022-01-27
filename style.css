@@ -96,6 +96,22 @@ body {
     vertical-align: middle;
 }
 
+.nav-mobile-list {
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: #00796b;
+}
+
+@media screen and (max-width:600px) {
+   .nav-mobile-list {
+       visibility: visible;
+   } 
+   #nav-list {
+       visibility: hidden;
+   }
+}
+
 .accountWidget {
     width: 20%;
     padding: 1.2rem;
