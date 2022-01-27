@@ -17,6 +17,14 @@ function navigateTo(page) {
     document.documentElement.scrollTop = 0;
 }
 
+function toAbout() {
+    navigateTo("about");
+}
+
+function toCart() {
+    navigateTo("cart");
+}
+
 function addToCart(item, category) {
     let cart = JSON.parse(sessionStorage.cart);
     let i = cart.findIndex(e => (e.item == item && e.category == category));

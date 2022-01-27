@@ -98,6 +98,7 @@ body {
 
 .nav-mobile-list {
     visibility: hidden;
+    position: sticky;
     display: flex;
     flex-direction: column;
     background-color: #00796b;
