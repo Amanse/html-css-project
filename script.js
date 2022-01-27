@@ -17,14 +17,6 @@ function navigateTo(page) {
     document.documentElement.scrollTop = 0;
 }
 
-function toAbout() {
-    navigateTo("about");
-}
-
-function toCart() {
-    navigateTo("cart");
-}
-
 function addToCart(item, category) {
     let cart = JSON.parse(sessionStorage.cart);
     let i = cart.findIndex(e => (e.item == item && e.category == category));
@@ -293,7 +285,9 @@ async function main() {
     // set event listeners on navigation buttons
     document.getElementById("logo").addEventListener("click", function () { navigateTo("index"); });
     document.getElementById("navbar-about").addEventListener("click", function () { navigateTo("about"); });
+    document.getElementById("navbar-mobile-about").addEventListener("click", function () { navigateTo("about"); });
     document.getElementById("navbar-cart").addEventListener("click", function () { navigateTo("cart"); });
+    document.getElementById("navbar-mobile-cart").addEventListener("click", function () { navigateTo("cart"); });
 
     // append dom elements
     displayAccount();
