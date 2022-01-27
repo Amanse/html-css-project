@@ -166,5 +166,89 @@
         "image": "brushes5.jpg"
       }
     ]
+  },
+  {
+    "id": "clocks",
+    "name": "Clocks",
+    "items": [
+      {
+        "id": "clocks0",
+        "name": "Slim Wood Clock",
+        "price": "$3",
+        "image": "clocks0.jpg"
+      },
+      {
+        "id": "clocks1",
+        "name": "Stylish Classic Clock",
+        "price": "$5",
+        "image": "clocks1.jpg"
+      },
+      {
+        "id": "clocks2",
+        "name": "Cube Clock",
+        "price": "$4",
+        "image": "clocks2.jpg"
+      },
+      {
+        "id": "clocks3",
+        "name": "Techno Flip-down Clock",
+        "price": "$10",
+        "image": "clocks3.jpg"
+      },
+      {
+        "id": "clocks4",
+        "name": "Mechanical Clock",
+        "price": "$15",
+        "image": "clocks4.jpg"
+      },
+      {
+        "id": "clocks5",
+        "name": "Minimalist Clock Set (3)",
+        "price": "$6",
+        "image": "clocks5.jpg"
+      }
+    ]
+  },
+  {
+    "id": "mugs",
+    "name": "Mugs",
+    "items": [
+      {
+        "id": "mugs0",
+        "name": "Oak Camping Mug",
+        "price": "$12",
+        "image": "mugs0.jpg"
+      },
+      {
+        "id": "mugs1",
+        "name": "Copper Hammered Mug",
+        "price": "$7",
+        "image": "mugs1.jpg"
+      },
+      {
+        "id": "mugs2",
+        "name": "Cowboy Mug",
+        "price": "$5",
+        "image": "mugs2.jpg"
+      },
+      {
+        "id": "mugs3",
+        "name": "Ninja Mug",
+        "price": "$8",
+        "image": "mugs3.jpg"
+      },
+      {
+        "id": "mugs4",
+        "name": "Pattern Mug",
+        "price": "$2",
+        "image": "mugs4.jpg"
+      },
+      {
+        "id": "mugs5",
+        "name": "Math Mug",
+        "price": "$4",
+        "image": "mugs5.jpg"
+      }
+    ]
   }
 ]
