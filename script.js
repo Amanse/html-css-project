@@ -100,6 +100,50 @@ function newSaleItem(item, category) {
     return div;
 }
 
+function onCartRemClick(item, category, counter) {
+    removeFromCart(item, category);
+    let c = countInCart(item, category);
+    if (c > 0) {
+        counter.innerText = c
+    } else {
+        // remove cart item from DOM
+        counter.closest(".cartItem").remove();
+    }
+}
+
+function newCartItem(item, category) {
+    if (!item || !category) return;
+    let img = document.createElement("img");
+    img.src = "./images/%s/%s".format(category.id, item.image);
+    img.alt = item.name;
+    let p1 = document.createElement("p");
+    p1.innerText = item.name;
+    let p2 = document.createElement("p");
+    p2.innerText = item.price;
+    let detailStuff = document.createElement("div");
+    detailStuff.append(p1, p2);
+    let cartLabel = document.createElement("span");
+    cartLabel.innerText = "In cart: ";
+    let cartCount = document.createElement("span");
+    cartCount.innerText = countInCart(item.id, category.id);
+    let buttonRem = document.createElement("button");
+    buttonRem.innerText = "-";
+    // remove from cart
+    buttonRem.addEventListener("click", function () { onCartRemClick(item.id, category.id, cartCount); });
+    let buttonAdd = document.createElement("button");
+    buttonAdd.innerText = "+";
+    // add to cart
+    buttonAdd.addEventListener("click", function () { onSaleCartClick(item.id, category.id, cartCount); });
+    let cartStuff = document.createElement("div");
+    cartStuff.append(cartLabel, buttonRem, cartCount, buttonAdd);
+    let div = document.createElement("div");
+    div.className = "cartItem";
+    div.dataset.item = item.id;
+    div.dataset.category = category.id;
+    div.append(img, detailStuff, cartStuff);
+    return div;
+}
+
 // find and return item and its category from their ids
 function findItem(item, category, database) {
     let c = database.filter(c => c.id == category)[0]
@@ -188,7 +232,7 @@ async function display(page) {
         let cart = JSON.parse(sessionStorage.cart);
         for (let i = 0; i < cart.length; i++) {
             let item = findItem(cart[i].item, cart[i].category, database);
-            cont.append(newSaleItem(item[0], item[1]));
+            cont.append(newCartItem(item[0], item[1]));
         }
         return;
     }
