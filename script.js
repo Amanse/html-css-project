@@ -230,6 +230,16 @@ async function display(page) {
 
     if (page == "cart") {
         let cart = JSON.parse(sessionStorage.cart);
+        if (cart.length == 0) {
+            let p1 = document.createElement("p");
+            p1.innerText = "Your cart is empty!";
+            let p2 = document.createElement("p");
+            p2.innerText = "Go and give us some business already, you cheapo!";
+            let div = document.createElement("div");
+            div.className = "errorText";
+            div.append(p1, p2);
+            cont.append(div);
+        }
         for (let i = 0; i < cart.length; i++) {
             let item = findItem(cart[i].item, cart[i].category, database);
             cont.append(newCartItem(item[0], item[1]));
