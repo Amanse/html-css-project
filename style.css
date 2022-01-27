@@ -42,19 +42,19 @@ body {
     overflow: auto;
 }
 
-.nav-list li {
+.nav-list li, .nav-mobile-list li {
     list-style: none;
     padding: 10px 15px;
     color: white;
     cursor: pointer;
 }
 
-.nav-list li div {
+.nav-list li div, .nav-mobile-list li div {
     text-decoration: none;
     color: white;
 }
 
-.nav-list li div:hover {
+.nav-list li div:hover, .nav-mobile-list li div:hover {
     color: grey;
 }
 
@@ -98,9 +98,10 @@ body {
 
 .nav-mobile-list {
     visibility: hidden;
-    position: sticky;
     display: flex;
     flex-direction: column;
+    position: sticky;
+    top:20px;
     background-color: #00796b;
 }
 
