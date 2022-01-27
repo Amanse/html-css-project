@@ -6,6 +6,11 @@ function strfmt() {
 };
 String.prototype.format = strfmt;
 
+function iincludes(sub) {
+    return this.toLowerCase().includes(sub.toLowerCase());
+}
+String.prototype.iincludes = iincludes;
+
 function logoutUser() {
     sessionStorage.clear();
     navigateTo("index");
@@ -156,12 +161,16 @@ function findItem(item, category, database) {
 
 // find and return item and its category matching a query
 function searchItems(query, database) {
+    query = query.trim();
     let l = [];
+    let cmatch, match;
     for (let i = 0; i < database.length; i++) {
         let category = database[i];
+        cmatch = category.name.iincludes(query);
         for (let j = 0; j < category.items.length; j++) {
             let item = category.items[j];
-            if (false) {
+            match = cmatch || item.name.iincludes(query);
+            if (match) {
                 l.push({ item: item.id, category: category.id });
             }
         }
