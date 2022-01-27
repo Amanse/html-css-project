@@ -46,6 +46,9 @@ function removeFromCart(item, category) {
             cart.splice(i, 1);
         }
         sessionStorage.cart = JSON.stringify(cart);
+        if (cart.length == 0) {
+            navigateTo("cart");
+        }
     }
 }
 
