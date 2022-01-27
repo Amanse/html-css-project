@@ -1,4 +1,4 @@
-[
+data = [
   {
     "id": "pens",
     "name": "Pens",

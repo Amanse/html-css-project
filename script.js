@@ -28,7 +28,17 @@ function logoutUser() {
 function navigateTo(page) {
     sessionStorage.page = page;
     displayAccount();
-    display(page);
+    switch (page) {
+    case "about":
+        location.href = "./about.html";
+        break;
+    case "signup":
+        location.href = "./signup.html";
+        break;
+    default:
+        location.href = "./index.html";
+        display(page);
+    }
     document.documentElement.scrollTop = 0;
 }
 
@@ -223,16 +233,10 @@ async function display(page) {
     cont.replaceChildren();
 
     if (page == "about") {
-        let about = await fetch('about.html').then(response => response.text());
-        let aboutDOM = new DOMParser().parseFromString(about, "text/html");
-        cont.innerHTML = aboutDOM.getElementsByTagName("body")[0].innerHTML;
         return;
     }
 
     if (page == "signup") {
-        let signup = await fetch('signup.html').then(response => response.text());
-        let signupDOM = new DOMParser().parseFromString(signup, "text/html");
-        cont.innerHTML = signupDOM.getElementsByTagName("body")[0].innerHTML;
         document.getElementById("form-fname").required = true;
         document.getElementById("form-lname").required = true;
         document.getElementById("form-email").required = true;
@@ -241,7 +245,7 @@ async function display(page) {
     }
 
     // all pages below this will need the database
-    let database = await fetch('data.json').then(response => response.json());
+    let database = data;
 
     if (page == "index") {
         for (const category of database) {

@@ -2,7 +2,55 @@
 
 <html>
 
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FISA Web Store</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/x-icon" href="./images/favicon.png">
+
+    <script defer src="./data.js"></script>
+    <script defer src="./script.js"></script>
+
+</head>
+
 <body>
+
+    <nav class="navbar background">
+
+        <div class="logo" id="logo">
+            <span class="logoTitle">FISA</span>
+        </div>
+        <ul class="nav-list" id="nav-list">
+            <li>
+                <div id="navbar-about">About Us</div>
+            </li>
+            <li>
+                <div id="navbar-cart">Cart</div>
+            </li>
+        </ul>
+
+        <div class="rightNav">
+            <input type="text" name="search" id="search">
+            <button class="btn btn-sm" id="search-btn">Search</button>
+        </div>
+
+        <div class="accountWidget" id="account-widget"></div>
+
+    </nav>
+
+    <div class="nav-mobile-list">
+        <ul class="nav-list-mobile " id="nav-list-mobile">
+            <li>
+                <div id="navbar-mobile-about">About us</div>
+            </li>
+            <li>
+                <div id="navbar-mobile-cart">Cart</div>
+            </li>
+        </ul>
+    </div>
 
     <div class="signupForm">
 
@@ -50,6 +98,11 @@
         </form>
 
     </div>
+
+    <footer class="footer">
+        <span class="footerTitle">FISA Pvt. Ltd</span>
+        <p class="fSubTitle">This is registered trademark of FISA Pvt. Ltd 2021</p>
+    </footer>
 
 </body>
 
