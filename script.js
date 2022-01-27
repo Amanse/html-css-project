@@ -154,6 +154,28 @@ function findItem(item, category, database) {
     return [i, c]
 }
 
+// find and return item and its category matching a query
+function searchItems(query, database) {
+    let l = [];
+    for (let i = 0; i < database.length; i++) {
+        let category = database[i];
+        for (let j = 0; j < category.items.length; j++) {
+            let item = category.items[j];
+            if (false) {
+                l.push({ item: item.id, category: category.id });
+            }
+        }
+    }
+    return l;
+}
+
+function onSearchClick(event) {
+    let searchBox = document.getElementById("search");
+    if (!searchBox.value) return;
+    sessionStorage.query = searchBox.value;
+    navigateTo("search");
+}
+
 function onSignupSubmit(event) {
     event.preventDefault();
     let fname = document.getElementById("form-fname").value;
@@ -257,7 +279,26 @@ async function display(page) {
         return;
     }
 
-    // TODO make search work??
+    if (page == "search") {
+        let query = sessionStorage.query;
+        let res = searchItems(query, database);
+        if (res.length == 0) {
+            let p1 = document.createElement("p");
+            p1.innerText = "No results for query!";
+            let p2 = document.createElement("p");
+            p2.innerText = "Maybe try searching for something that's still in fashion?";
+            let div = document.createElement("div");
+            div.className = "errorText";
+            div.append(p1, p2);
+            cont.append(div);
+            return;
+        }
+        for (let i = 0; i < res.length; i++) {
+            let item = findItem(res[i].item, res[i].category, database);
+            cont.append(newSaleItem(item[0], item[1]));
+        }
+        return;
+    }
 
     // 404
     let p1 = document.createElement("p");
@@ -288,6 +329,7 @@ async function main() {
     document.getElementById("navbar-mobile-about").addEventListener("click", function () { navigateTo("about"); });
     document.getElementById("navbar-cart").addEventListener("click", function () { navigateTo("cart"); });
     document.getElementById("navbar-mobile-cart").addEventListener("click", function () { navigateTo("cart"); });
+    document.getElementById("search-btn").addEventListener("click", onSearchClick);
 
     // append dom elements
     displayAccount();
