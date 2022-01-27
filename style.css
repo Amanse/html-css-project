@@ -101,13 +101,15 @@ body {
     display: flex;
     flex-direction: column;
     position: sticky;
-    top:6.8em;
     background-color: #00796b;
+    height: 0;
 }
 
 @media screen and (max-width:600px) {
    .nav-mobile-list {
        visibility: visible;
+       height: auto;
+       top:6.8em;
    } 
    #nav-list {
        visibility: hidden;
