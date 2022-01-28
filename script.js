@@ -304,9 +304,36 @@ async function display(page) {
     cont.append(div);
 }
 
+async function loadPizza() {
+    await (function (file) {
+        let [ p, r ] = (function() {
+            let resolver;
+            let promise = new Promise(resolve => resolver = resolve);
+            return [ promise, resolver ];
+        }());
+        let script = createElement("script", {
+                src: file,
+                defer: true,
+                onload: r,
+        });
+        document.getElementsByTagName("head")[0].append(script);
+        return p;
+    }("./pizza.js"));
+    let cont = document.getElementById("main-content");
+    let p = displayPizza();
+    let div = createElement("div",
+        { style: "margin: 0px 100%; flex-basis: 100%; align-self: flex-start;", },
+        p.canvas
+    );
+    cont.append(div);
+    return p;
+}
+
 async function main() {
 
-    // TODO loading icon
+    // loading icon
+    let pizza = await loadPizza();
+    pizza.start();
 
     // setup sessionStorage for first launch
     if (!sessionStorage.page) {
@@ -327,6 +354,11 @@ async function main() {
     // append dom elements
     displayAccount();
     display(sessionStorage.page);
+
+    // loading icon end
+    await new Promise(r => setTimeout(r, 500));
+    pizza.stop();
+    pizza.remove();
 
 }
 
