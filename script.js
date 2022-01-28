@@ -219,7 +219,13 @@ function displayAccount() {
     li.append(div);
     li.addEventListener("click", logoutUser);
     navbarList.append(li);
-    mobileNavBarList.append(li);
+
+    let mDiv = document.createElement("div");
+    mDiv.innerText = "Logout";
+    let mLi = document.createElement("li");
+    mLi.append(mDiv);
+    mLi.addEventListener("click", logoutUser);
+    mobileNavBarList.append(mLi);
 
 }
 
