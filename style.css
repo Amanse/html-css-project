@@ -1,10 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&display=swap');
 
+html, body {
+    height: 100%;
+}
+
 body {
     background-color: #f6f6f0;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .background {
@@ -129,6 +135,7 @@ body {
 }
 
 .mainContent {
+    flex-grow: 1;
     display:flex;
     flex-wrap: wrap;
     align-content: center;
