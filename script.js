@@ -18,7 +18,8 @@ function logoutUser() {
 
 function navigateTo(page) {
     sessionStorage.page = page;
-    document.location.reload();
+    displayAccount();
+    display(page);
     document.documentElement.scrollTop = 0;
 }
 
@@ -232,6 +233,7 @@ function displayAccount() {
 async function display(page) {
 
     let cont = document.getElementById("main-content");
+    cont.replaceChildren();
 
     if (page == "about") {
         let about = await fetch('about.html').then(response => response.text());
