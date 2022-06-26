@@ -19,7 +19,7 @@ body {
     justify-content: center;
     position: sticky;
     top: 0;
-    padding-left: 1rem;
+    padding: 0rem 1rem;
 }
 
 .logo {
@@ -28,7 +28,7 @@ body {
     align-items: center;
     font-family: 'Pacifico', cursive;
     font-size: 50px;
-    margin-right: 19px;
+    padding: 1rem 2rem;
     color: white;
     text-decoration: none;
     cursor: pointer;
@@ -131,10 +131,10 @@ body {
 .mainContent {
     display:flex;
     flex-wrap: wrap;
+    align-content: center;
     justify-content: center;
     text-align: center;
-    margin-top: 100px;
-    margin-bottom: 70px;
+    margin: 50px;
 }
 
 .mainContent a {
@@ -342,10 +342,7 @@ body {
 
 .aboutContent {
     text-align: center;
-    margin-top: 100px;
-    margin-bottom: 100px;
-    margin-left: 100px;
-    margin-right: 100px;
+    margin: 50px 100px;
     font-size: 20px;
 }
 
