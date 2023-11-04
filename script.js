@@ -77,9 +77,9 @@ function newCategoryItem(category) {
     return div;
 }
 
-function onSaleCartClick(item, category, counter) {
+function onSaleCartClick(e, item, category) {
     addToCart(item, category);
-    counter.innerText = countInCart(item, category);
+    e.target.previousSibling.innerText = countInCart(item, category);
 }
 
 function newSaleItem(item, category) {
@@ -98,7 +98,7 @@ function newSaleItem(item, category) {
     let button = document.createElement("button");
     button.innerText = "Add to cart";
     // add to cart
-    button.addEventListener("click", function () { onSaleCartClick(item.id, category.id, cartCount); });
+    button.addEventListener("click", function (e) { onSaleCartClick(e, item.id, category.id); });
     let cartStuff = document.createElement("div");
     cartStuff.append(cartLabel, cartCount, button);
     let div = document.createElement("div");
@@ -109,14 +109,14 @@ function newSaleItem(item, category) {
     return div;
 }
 
-function onCartRemClick(item, category, counter) {
+function onCartRemClick(e, item, category) {
     removeFromCart(item, category);
     let c = countInCart(item, category);
     if (c > 0) {
-        counter.innerText = c
+        e.target.nextSibling.innerText = c
     } else {
         // remove cart item from DOM
-        counter.closest(".cartItem").remove();
+        e.target.closest(".cartItem").remove();
     }
 }
 
@@ -138,11 +138,11 @@ function newCartItem(item, category) {
     let buttonRem = document.createElement("button");
     buttonRem.innerText = "-";
     // remove from cart
-    buttonRem.addEventListener("click", function () { onCartRemClick(item.id, category.id, cartCount); });
+    buttonRem.addEventListener("click", function (e) { onCartRemClick(e, item.id, category.id); });
     let buttonAdd = document.createElement("button");
     buttonAdd.innerText = "+";
     // add to cart
-    buttonAdd.addEventListener("click", function () { onSaleCartClick(item.id, category.id, cartCount); });
+    buttonAdd.addEventListener("click", function (e) { onSaleCartClick(e, item.id, category.id); });
     let cartStuff = document.createElement("div");
     cartStuff.append(cartLabel, buttonRem, cartCount, buttonAdd);
     let div = document.createElement("div");
