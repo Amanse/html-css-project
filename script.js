@@ -6,6 +6,15 @@ function strfmt() {
 };
 String.prototype.format = strfmt;
 
+function createElement(element, props, ...children) {
+    let ele = document.createElement(element);
+    for (const k in props)
+        ele[k] = props[k];
+    if (children.length > 0)
+        ele.replaceChildren(...children);
+    return ele;
+}
+
 function iincludes(sub) {
     return this.toLowerCase().includes(sub.toLowerCase());
 }
@@ -62,19 +71,17 @@ function countInCart(item, category) {
 
 function newCategoryItem(category) {
     if (!category) return;
-    let img = document.createElement("img");
     let item = Math.floor(Math.random() * category.items.length);
-    img.src = "./images/%s/%s".format(category.id, category.items[item].image);
-    img.alt = category.name;
-    let p = document.createElement("p");
-    p.innerText = category.name;
-    let div = document.createElement("div");
-    div.className = "categoryItem";
-    div.dataset.category = category.id;
-    div.append(img, p);
-    // goto category page
-    div.addEventListener("click", function () { navigateTo("category-%s".format(category.id)); });
-    return div;
+    return createElement("div", {
+            className: "categoryItem",
+            onclick: () => navigateTo("category-%s".format(category.id)),
+        },
+        createElement("img", {
+                src: "./images/%s/%s".format(category.id, category.items[item].image),
+                alt: category.name,
+        }),
+        createElement("p", {}, category.name),
+    );
 }
 
 function onSaleCartClick(e, item, category) {
@@ -84,29 +91,22 @@ function onSaleCartClick(e, item, category) {
 
 function newSaleItem(item, category) {
     if (!item || !category) return;
-    let img = document.createElement("img");
-    img.src = "./images/%s/%s".format(category.id, item.image);
-    img.alt = item.name;
-    let p1 = document.createElement("p");
-    p1.innerText = item.name;
-    let p2 = document.createElement("p");
-    p2.innerText = item.price;
-    let cartLabel = document.createElement("span");
-    cartLabel.innerText = "In cart: ";
-    let cartCount = document.createElement("span");
-    cartCount.innerText = countInCart(item.id, category.id);
-    let button = document.createElement("button");
-    button.innerText = "Add to cart";
-    // add to cart
-    button.addEventListener("click", function (e) { onSaleCartClick(e, item.id, category.id); });
-    let cartStuff = document.createElement("div");
-    cartStuff.append(cartLabel, cartCount, button);
-    let div = document.createElement("div");
-    div.className = "saleItem";
-    div.dataset.item = item.id;
-    div.dataset.category = category.id;
-    div.append(img, p1, p2, cartStuff);
-    return div;
+    return createElement("div", { className: "saleItem", },
+        createElement("img", {
+                src: "./images/%s/%s".format(category.id, item.image),
+                alt: item.name,
+        }),
+        createElement("p", {}, item.name),
+        createElement("p", {}, item.price),
+        createElement("div", {},
+            createElement("span", {}, "In cart: "),
+            createElement("span", {}, countInCart(item.id, category.id)),
+            createElement("button",
+                { onclick: (e) => onSaleCartClick(e, item.id, category.id), },
+                "Add to cart"
+            ),
+        ),
+    );
 }
 
 function onCartRemClick(e, item, category) {
@@ -122,35 +122,28 @@ function onCartRemClick(e, item, category) {
 
 function newCartItem(item, category) {
     if (!item || !category) return;
-    let img = document.createElement("img");
-    img.src = "./images/%s/%s".format(category.id, item.image);
-    img.alt = item.name;
-    let p1 = document.createElement("p");
-    p1.innerText = item.name;
-    let p2 = document.createElement("p");
-    p2.innerText = item.price;
-    let detailStuff = document.createElement("div");
-    detailStuff.append(p1, p2);
-    let cartLabel = document.createElement("span");
-    cartLabel.innerText = "In cart: ";
-    let cartCount = document.createElement("span");
-    cartCount.innerText = countInCart(item.id, category.id);
-    let buttonRem = document.createElement("button");
-    buttonRem.innerText = "-";
-    // remove from cart
-    buttonRem.addEventListener("click", function (e) { onCartRemClick(e, item.id, category.id); });
-    let buttonAdd = document.createElement("button");
-    buttonAdd.innerText = "+";
-    // add to cart
-    buttonAdd.addEventListener("click", function (e) { onSaleCartClick(e, item.id, category.id); });
-    let cartStuff = document.createElement("div");
-    cartStuff.append(cartLabel, buttonRem, cartCount, buttonAdd);
-    let div = document.createElement("div");
-    div.className = "cartItem";
-    div.dataset.item = item.id;
-    div.dataset.category = category.id;
-    div.append(img, detailStuff, cartStuff);
-    return div;
+    return createElement("div", { className: "cartItem", },
+        createElement("img", {
+                src: "./images/%s/%s".format(category.id, item.image),
+                alt: item.name,
+        }),
+        createElement("div", {},
+            createElement("p", {}, item.name),
+            createElement("p", {}, item.price),
+        ),
+        createElement("div", {},
+            createElement("span", {}, "In cart: "),
+            createElement("button",
+                { onclick: (e) => onCartRemClick(e, item.id, category.id), },
+                "-"
+            ),
+            createElement("span", {}, countInCart(item.id, category.id)),
+            createElement("button",
+                { onclick: (e) => onSaleCartClick(e, item.id, category.id), },
+                "+"
+            ),
+        ),
+    );
 }
 
 // find and return item and its category from their ids
@@ -207,23 +200,19 @@ function displayAccount() {
 
     let account = JSON.parse(sessionStorage.account);
 
-    let abbr = document.createElement("abbr");
-    abbr.title = account.email;
-    abbr.innerText = "Welcome %s %s!".format(account.fname, account.lname);
+    let abbr = createElement("abbr", { title: account.email, },
+        "Welcome %s %s!".format(account.fname, account.lname),
+    );
     widget.append(abbr);
 
-    let div = document.createElement("div");
-    div.innerText = "Logout";
-    let li = document.createElement("li");
-    li.append(div);
-    li.addEventListener("click", logoutUser);
+    let li = createElement("li", { onclick: logoutUser, },
+        createElement("div", {}, "Logout"),
+    );
     navbarList.append(li);
 
-    let mDiv = document.createElement("div");
-    mDiv.innerText = "Logout";
-    let mLi = document.createElement("li");
-    mLi.append(mDiv);
-    mLi.addEventListener("click", logoutUser);
+    let mLi = createElement("li", { onclick: logoutUser, },
+        createElement("div", {}, "Logout"),
+    );
     mobileNavBarList.append(mLi);
 
 }
@@ -273,13 +262,10 @@ async function display(page) {
     if (page == "cart") {
         let cart = JSON.parse(sessionStorage.cart);
         if (cart.length == 0) {
-            let p1 = document.createElement("p");
-            p1.innerText = "Your cart is empty!";
-            let p2 = document.createElement("p");
-            p2.innerText = "Go and give us some business already, you cheapo!";
-            let div = document.createElement("div");
-            div.className = "errorText";
-            div.append(p1, p2);
+            let div = createElement("div", { className: "errorText", },
+                createElement("p", {}, "Your cart is empty!"),
+                createElement("p", {}, "Go and give us some business already, you cheapo!"),
+            );
             cont.append(div);
             return;
         }
@@ -287,9 +273,7 @@ async function display(page) {
             let item = findItem(i.item, i.category, database);
             cont.append(newCartItem(item[0], item[1]));
         }
-        let buyBtn = document.createElement("button");
-        buyBtn.className = "buyBtn";
-        buyBtn.innerText = "Buy now!"
+        let buyBtn = createElement("button", { className: "buyBtn", }, "Buy now!");
         cont.append(buyBtn);
         return;
     }
@@ -298,13 +282,10 @@ async function display(page) {
         let query = sessionStorage.query;
         let res = searchItems(query, database);
         if (res.length == 0) {
-            let p1 = document.createElement("p");
-            p1.innerText = "No results for query!";
-            let p2 = document.createElement("p");
-            p2.innerText = "Maybe try searching for something that's still in fashion?";
-            let div = document.createElement("div");
-            div.className = "errorText";
-            div.append(p1, p2);
+            let div = createElement("div", { className: "errorText", },
+                createElement("p", {}, "No results for query!"),
+                createElement("p", {}, "Maybe try searching for something that's still in fashion?"),
+            );
             cont.append(div);
             return;
         }
@@ -316,13 +297,10 @@ async function display(page) {
     }
 
     // 404
-    let p1 = document.createElement("p");
-    p1.innerText = "Page not found!";
-    let p2 = document.createElement("p");
-    p2.innerText = "Did you get lost, weary traveller?";
-    let div = document.createElement("div");
-    div.className = "errorText";
-    div.append(p1, p2);
+    let div = createElement("div", { className: "errorText", },
+        createElement("p", {}, "Page not found!"),
+        createElement("p", {}, "Did you get lost, weary traveller?"),
+    );
     cont.append(div);
 }
 
