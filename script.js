@@ -165,11 +165,9 @@ function searchItems(query, database) {
     query = query.trim();
     let l = [];
     let cmatch, match;
-    for (let i = 0; i < database.length; i++) {
-        let category = database[i];
+    for (const category of database) {
         cmatch = category.name.iincludes(query);
-        for (let j = 0; j < category.items.length; j++) {
-            let item = category.items[j];
+        for (const item of category.items) {
             match = cmatch || item.name.iincludes(query);
             if (match) {
                 l.push({ item: item.id, category: category.id });
@@ -257,8 +255,8 @@ async function display(page) {
     let database = await fetch('data.json').then(response => response.json());
 
     if (page == "index") {
-        for (let i = 0; i < database.length; i++) {
-            cont.append(newCategoryItem(database[i]));
+        for (const category of database) {
+            cont.append(newCategoryItem(category));
         }
         return;
     }
@@ -266,8 +264,8 @@ async function display(page) {
     if (RegExp("^category-.+").test(page)) {
         let pageSuff = page.replace(RegExp("^category-"), "");
         let category = database.filter(e => (e.id == pageSuff))[0];
-        for (let i = 0; i < category.items.length; i++) {
-            cont.append(newSaleItem(category.items[i], category));
+        for (const item of category.items) {
+            cont.append(newSaleItem(item, category));
         }
         return;
     }
@@ -285,8 +283,8 @@ async function display(page) {
             cont.append(div);
             return;
         }
-        for (let i = 0; i < cart.length; i++) {
-            let item = findItem(cart[i].item, cart[i].category, database);
+        for (const i of cart) {
+            let item = findItem(i.item, i.category, database);
             cont.append(newCartItem(item[0], item[1]));
         }
         let buyBtn = document.createElement("button");
@@ -310,8 +308,8 @@ async function display(page) {
             cont.append(div);
             return;
         }
-        for (let i = 0; i < res.length; i++) {
-            let item = findItem(res[i].item, res[i].category, database);
+        for (const i of res) {
+            let item = findItem(i.item, i.category, database);
             cont.append(newSaleItem(item[0], item[1]));
         }
         return;
